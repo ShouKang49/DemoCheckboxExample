@@ -28,15 +28,23 @@ public class MainActivity extends AppCompatActivity {
         btnCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Button Click",Toast.LENGTH_LONG).show();
-                if(btnEnabled.isChecked()){
-                    tvDisplay.setText("The discount is given");
-                }
-                else{
-                    tvDisplay.setText("The discount is not given");
-                }
                 Log.i("MyActivity", "Inside onClick()");
+                Toast.makeText(MainActivity.this,"Button Click",Toast.LENGTH_LONG).show();
+                if(btnEnabled.isChecked()) {
+                    double pay = calcPay(100, 20);
+                    tvDisplay.setText("The discount is given. You need to pay " + pay);
+                }
+                else {
+                    double pay = calcPay(100, 0);
+                    tvDisplay.setText("The discount is not given. You need to pay " + pay);
+                }
+
+
             }
         });
+    }
+    private double calcPay(double price, double discount){
+        double pay = price * (1-discount);
+        return pay;
     }
 }
